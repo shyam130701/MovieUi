@@ -1,0 +1,36 @@
+
+<div class="box">
+  <mat-card class="card">
+    <div class="title">
+      <h2 style="color: royalblue">Movie Details</h2>
+    </div>
+    <form class="form" [formGroup]="bookForm" (ngSubmit)="ticketBooking()">
+      <mat-form-field class="field">
+        <mat-label>UserName</mat-label>
+        <input matInput type="text" formControlName="userName" [(ngModel)]="book.userName"/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>MovieName</mat-label>
+        <input matInput type="text" formControlName="movieName" [(ngModel)]="book.movieName"/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>TheaterName</mat-label>
+        <input matInput type="text" formControlName="theaterName" [(ngModel)]="book.theaterName" />
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>No of Tickets</mat-label>
+        <input matInput type="text" formControlName="ticketCount" [(ngModel)]="book.ticketCount"/>
+      </mat-form-field>
+
+      <div class="example-button-row">
+        <button mat-raised-button color="warn" type="submit">
+          Book Tickets
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+

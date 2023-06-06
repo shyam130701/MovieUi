@@ -1,0 +1,43 @@
+<div class="box">
+  <mat-card>
+    <div class="title">
+      <h2 style="color: gold">Movie Details</h2>
+    </div>
+    <form class="form" [formGroup]="movieForm" (ngSubmit)="createMovie()">
+      <mat-form-field class="field">
+        <mat-label>Id</mat-label>
+        <input matInput type="number" formControlName="id" [(ngModel)]="movieDetails.id"/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>MovieName</mat-label>
+        <input matInput type="text" formControlName="movieName" [(ngModel)]="movieDetails.movieName"/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>TheaterName</mat-label>
+        <input matInput type="text" formControlName="theaterName" [(ngModel)]="movieDetails.theaterName" />
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>Price</mat-label>
+        <input matInput type="text" formControlName="price" [(ngModel)]="movieDetails.price"/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>AvailableTickets</mat-label>
+        <input matInput type="text" formControlName="availableTickets"  [(ngModel)]="movieDetails.availableTickets"/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>TotalTickets</mat-label>
+        <input matInput readonly  formControlName="totalTickets" />
+      </mat-form-field>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit">
+          Add Movie
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
