@@ -1,0 +1,29 @@
+<div class="box">
+  <mat-card class="card">
+    <div class="title">
+      <h2 style="color: blue">Profile</h2>
+    </div>
+    <form class="form" >
+      <mat-form-field class="field">
+        <mat-label>Id</mat-label>
+        <input matInput type="number"  [value]="user.id" readonly/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>UserName</mat-label>
+        <input matInput type="text" [value]="user.name" readonly/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>Age</mat-label>
+        <input matInput type="text" [value]="user.age" readonly/>
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>Role</mat-label>
+        <input matInput type="text" [value]="user.role" readonly/>
+      </mat-form-field>
+
+    </form>
+  </mat-card>
+</div>

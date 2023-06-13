@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
@@ -16,6 +16,23 @@ import {MatButtonModule} from '@angular/material/button';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
 import { MovielistComponent } from './movielist/movielist.component';
 import { BookingdetailsComponent } from './bookingdetails/bookingdetails.component';
+import { TokenInterceptor } from './token.interceptor';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSortModule } from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { NavbarComponent } from './navbar/navbar.component';
+
+import {MatSelectModule} from '@angular/material/select';
+
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
+import { BookinglistComponent } from './bookinglist/bookinglist.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +41,10 @@ import { BookingdetailsComponent } from './bookingdetails/bookingdetails.compone
     RegisterComponent,
     MoviedetailsComponent,
     MovielistComponent,
-    BookingdetailsComponent
+    BookingdetailsComponent,
+    NavbarComponent,
+    UserdetailsComponent,
+    BookinglistComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +56,20 @@ import { BookingdetailsComponent } from './bookingdetails/bookingdetails.compone
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}

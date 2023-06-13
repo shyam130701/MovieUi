@@ -1,53 +1,51 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, ViewChild } from '@angular/core';
 import { MovieserviceService } from '../movieservice.service';
-import { Movie } from '../model/movie';
+import { Booking } from '../model/booking';
 import { MatSort, Sort } from '@angular/material/sort';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-movielist',
-  templateUrl: './movielist.component.html',
-  styleUrls: ['./movielist.component.css']
+  selector: 'app-bookinglist',
+  templateUrl: './bookinglist.component.html',
+  styleUrls: ['./bookinglist.component.css']
 })
-export class MovielistComponent {
-
+export class BookinglistComponent {
   constructor(private service: MovieserviceService, private _liveAnnouncer: LiveAnnouncer) { }
-  movieList: Movie[] = [];
 
+  bookingList:Booking[]=[];
 
-  displayedColumns: string[] = ['id', 'movieName', 'theaterName', 'price', 'availableTickets', 'totalTickets'];
+  displayedColumns: string[] = ['bookingId','userName', 'movieName', 'theaterName','ticketCount'];
   dataSource: any;
 
   ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.gettingBookingList();
 
-
-    this.getList();
   }
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
 
-
-
-
-  getList() {
-    this.service.getAllMovies().subscribe(
-      ((data:any) => {
-        this.movieList = data;
-        this.dataSource = new MatTableDataSource<Movie>(this.movieList);
+  gettingBookingList()
+  {
+    this.service.getBookingList().subscribe(
+      (data:any)=>
+      {
+        this.bookingList=data;
+        this.dataSource = new MatTableDataSource<Booking>(this.bookingList);
+        console.log(data);
         // this.dataSource=this.ELEMENT_DATA;
         this.dataSource.paginator = this.paginator;
 
         this.dataSource.sort = this.sort;
-
-        console.log(this.movieList)
-      })
+      }
     )
   }
+
 
   announceSortChange(sortState: Sort) {
 
@@ -58,12 +56,4 @@ export class MovielistComponent {
     }
   }
 
-
 }
-
-
-
-
-
-
-

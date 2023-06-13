@@ -1,0 +1,52 @@
+<p>
+  <mat-toolbar color="primary">
+    <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+      aria-label="Example icon-button with menu icon">
+
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="myapp">My App</span>
+    <span class="example-spacer"></span>
+    <button  routerLink="login" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon"  (click)="openPop()" aria-label="Example icon-button with share icon">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item>
+        <button routerLink="" mat-button><mat-icon>home</mat-icon> Home</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="addMovie" mat-button><mat-icon>dashboard</mat-icon> Add Movie</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button routerLink="" mat-button><mat-icon>table</mat-icon> List Of Movies</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="booking" mat-button><mat-icon>explore</mat-icon>Book Movie</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="bookingList" mat-button><mat-icon>view_list</mat-icon>Booking List</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="login"><mat-icon>login</mat-icon>Login</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="logout()" routerLink=""><mat-icon>logout</mat-icon>Logout</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center;min-height: 600px; background-color: lightgray;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -37,22 +37,5 @@ h2
 
 
 .field {
-  width: 75%;
+  width: 100%;
 }
-
-
-.example-button-row {
-  display: flex;
-  max-width: 600px;
-  padding-left: 10%;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-/* 
-.listMovie{
-  display: flex;
-  max-width: 600px;
-  margin: 8px 8px 8px 0;
-} */

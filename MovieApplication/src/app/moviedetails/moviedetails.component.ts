@@ -2,6 +2,7 @@ import { FormBuilder } from '@angular/forms';
 import { MovieserviceService } from '../movieservice.service';
 import { Movie } from './../model/movie';
 import { Component } from '@angular/core';
+import { Credentials } from '../model/credentials';
 
 @Component({
   selector: 'app-moviedetails',
@@ -12,8 +13,18 @@ export class MoviedetailsComponent {
 
 
   constructor(private movie:MovieserviceService,private fb:FormBuilder){}
+  login:any;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.login=localStorage.getItem("credentials");
+    this.movie.getUser(this.login).subscribe(
+      (data)=>
+      {
+        console.log(data);
+      }
+    )
+  }
 
   movieForm=this.fb.group(
     {
