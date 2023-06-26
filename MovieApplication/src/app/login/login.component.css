@@ -6,15 +6,16 @@
 
 .title
 {
-  padding-left: 180px;
+  margin-left: auto;
+  margin-right: auto;
 }
-h2
+/* h2
 {
   align-content: center;
-}
+} */
 .box {
 
-  margin: 12rem auto;
+  margin: 5rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +37,7 @@ h2
 .example-button-row {
   display: table-cell;
   max-width: 600px;
-  padding-left: 180px;
+  padding-left: 100px;
 }
 
 .example-button-row .mat-mdc-button-base {
@@ -46,5 +47,8 @@ h2
 .card{
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- 
+
+
 }
+
+

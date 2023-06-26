@@ -8,25 +8,37 @@
       <mat-form-field class="field">
         <mat-label>UserName</mat-label>
         <input matInput type="text" formControlName="userName" [(ngModel)]="book.userName"/>
+        <mat-error *ngIf="bookForm.controls['userName'].invalid || bookForm.controls['userName'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>MovieName</mat-label>
         <input matInput type="text" formControlName="movieName" [(ngModel)]="book.movieName"/>
+        <mat-error *ngIf="bookForm.controls['movieName'].invalid || bookForm.controls['movieName'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>TheaterName</mat-label>
         <input matInput type="text" formControlName="theaterName" [(ngModel)]="book.theaterName" />
+        <mat-error *ngIf="bookForm.controls['theaterName'].invalid || bookForm.controls['theaterName'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>No of Tickets</mat-label>
         <input matInput type="number" formControlName="ticketCount" [(ngModel)]="book.ticketCount"/>
+        <mat-error *ngIf="bookForm.controls['ticketCount'].invalid || bookForm.controls['ticketCount'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <div class="example-button-row">
-        <button mat-raised-button color="warn" (click)="ticketBooking()"  >
+        <button mat-raised-button color="warn" type="submit"  >
           Book Tickets
         </button>
       </div>

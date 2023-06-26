@@ -3,7 +3,7 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: auto;
-    /* table-layout: fixed; */
+    table-layout: auto;
 
   }
 

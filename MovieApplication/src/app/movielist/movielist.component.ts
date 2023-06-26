@@ -5,6 +5,8 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movielist',
@@ -13,11 +15,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class MovielistComponent {
 
-  constructor(private service: MovieserviceService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private service: MovieserviceService, private _liveAnnouncer: LiveAnnouncer,private toast:ToastrService,private route:Router) { }
   movieList: Movie[] = [];
 
 
-  displayedColumns: string[] = ['id', 'movieName', 'theaterName', 'price', 'availableTickets', 'totalTickets'];
+  displayedColumns: string[] = ['id', 'movieName', 'theaterName', 'price', 'availableTickets', 'totalTickets','delete','update'];
   dataSource: any;
 
   ngOnInit(): void {
@@ -31,6 +33,8 @@ export class MovielistComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
 
+
+  roles:any=localStorage.getItem("userData");
 
 
 
@@ -56,6 +60,48 @@ export class MovielistComponent {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  deletingMovie(movieName:string,theaterName:string)
+  {
+    if(confirm("Are you sure to delete the movie"))
+    this.service.deleteMovie(movieName,theaterName).subscribe(
+      (data)=>
+      {
+        setTimeout(()=>{
+
+          location.reload()
+      }, 2000);
+        this.toast.success("Movie Deleted Successfully")
+        console.log(data)
+      },
+      (error)=>
+      {
+        console.error(error)
+        this.toast.warning("Movie Not Deleted")
+      }
+    )
+  }
+
+  updateTicket(movieName:string,theaterName:string)
+  {
+    if(confirm("Are you sure to update the movie"))
+    this.service.addTicket(movieName,theaterName).subscribe(
+      (data)=>
+      {
+        setTimeout(()=>{
+
+          location.reload()
+      }, 2000);
+        this.toast.success("Ticket Added Successfully")
+        console.log(data)
+      },
+      (error)=>
+      {
+        console.error(error)
+        this.toast.warning("Ticket Update Failed")
+      }
+    )
   }
 
 

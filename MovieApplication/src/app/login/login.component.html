@@ -7,19 +7,31 @@
       <mat-form-field class="field">
         <mat-label>Email</mat-label>
         <input matInput type="text" formControlName="userName" [(ngModel)]="credentials.userName"/>
+        <mat-error *ngIf="loginForm.controls['userName'].invalid || loginForm.controls['userName'].untouched">
+          UserId is required
+          </mat-error>
       </mat-form-field>
+
+
+
 
       <mat-form-field class="field">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" [(ngModel)]="credentials.password"/>
+        <mat-error *ngIf="loginForm.controls['password'].invalid || loginForm.controls['password'].untouched">
+          Password is required
+          </mat-error>
       </mat-form-field>
 
       <div class="example-button-row">
         <button mat-raised-button color="primary" (click)="login()">
           Login
         </button>
+        <button mat-raised-button color="warn" class="popup" (click)="openPop()">
+          Forgot Password
+        </button>
       </div>
-      
+
     </form>
   </mat-card>
 </div>

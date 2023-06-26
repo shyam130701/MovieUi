@@ -1,8 +1,10 @@
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MovieserviceService } from '../movieservice.service';
 import { Movie } from './../model/movie';
 import { Component } from '@angular/core';
 import { Credentials } from '../model/credentials';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-moviedetails',
@@ -12,7 +14,7 @@ import { Credentials } from '../model/credentials';
 export class MoviedetailsComponent {
 
 
-  constructor(private movie:MovieserviceService,private fb:FormBuilder){}
+  constructor(private movie:MovieserviceService,private fb:FormBuilder,private route:Router,private toast:ToastrService){}
   login:any;
 
   ngOnInit(): void {
@@ -28,11 +30,11 @@ export class MoviedetailsComponent {
 
   movieForm=this.fb.group(
     {
-      id:'',
-      movieName:'',
-      theaterName:'',
-      price:'',
-      availableTickets:'',
+      id:['',Validators.required],
+      movieName:['',Validators.required],
+      theaterName:['',Validators.required],
+      price:['',Validators.required],
+      availableTickets:['',Validators.required],
       totalTickets:100
     }
   )
@@ -44,7 +46,19 @@ export class MoviedetailsComponent {
     this.movie.addMovie(this.movieDetails).subscribe(
       (data)=>
       {
+        this.route.navigate(['/movieList'])
+        this.toast.success("Movie Added")
+        setTimeout(()=>{
+
+
+          location.reload()
+
+      }, 2000);
         console.log(data);
+      },(err)=>
+      {
+        this.toast.error("Failed")
+        console.log(err)
       }
     )
   }

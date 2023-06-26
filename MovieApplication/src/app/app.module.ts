@@ -32,6 +32,12 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { BookinglistComponent } from './bookinglist/bookinglist.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { UserpageComponent } from './userpage/userpage.component';
+import { ImagesliderComponent } from './imageslider/imageslider.component';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { ToastrModule } from 'ngx-toastr';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+
 
 
 @NgModule({
@@ -44,7 +50,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     BookingdetailsComponent,
     NavbarComponent,
     UserdetailsComponent,
-    BookinglistComponent
+    BookinglistComponent,
+    UserpageComponent,
+    ImagesliderComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -66,10 +75,16 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgImageSliderModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
+
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-// {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}
+// {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}
+

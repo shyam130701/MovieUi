@@ -7,26 +7,41 @@
       <mat-form-field class="field">
         <mat-label>Id</mat-label>
         <input matInput type="number" formControlName="id" [(ngModel)]="movieDetails.id"/>
+        <mat-error *ngIf="movieForm.controls['id'].invalid || movieForm.controls['id'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>MovieName</mat-label>
         <input matInput type="text" formControlName="movieName" [(ngModel)]="movieDetails.movieName"/>
+        <mat-error *ngIf="movieForm.controls['movieName'].invalid || movieForm.controls['movieName'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>TheaterName</mat-label>
         <input matInput type="text" formControlName="theaterName" [(ngModel)]="movieDetails.theaterName" />
+        <mat-error *ngIf="movieForm.controls['theaterName'].invalid || movieForm.controls['theaterName'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>Price</mat-label>
         <input matInput type="number" formControlName="price" [(ngModel)]="movieDetails.price"/>
+        <mat-error *ngIf="movieForm.controls['price'].invalid || movieForm.controls['price'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>AvailableTickets</mat-label>
         <input matInput type="number" formControlName="availableTickets"  [(ngModel)]="movieDetails.availableTickets"/>
+        <mat-error *ngIf="movieForm.controls['availableTickets'].invalid || movieForm.controls['availableTickets'].untouched">
+          Field is required
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
@@ -37,9 +52,7 @@
         <button mat-raised-button color="primary" type="submit">
           Add Movie
         </button>
-        <button routerLink=""  mat-raised-button color="primary" type="submit">
-          Movie List
-        </button>
+
       </div>
     </form>
   </mat-card>

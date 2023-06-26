@@ -1,38 +1,60 @@
 <div class="box">
-  <mat-card>
+  <mat-card class="card">
     <div class="title">
       <h2 style="color: gold">Registration Form</h2>
     </div>
     <form class="form" [formGroup]="reactiveForm" (ngSubmit)="submit()">
-      <mat-form-field class="field">
+      <!-- <mat-form-field class="field">
         <mat-label>Id</mat-label>
         <input matInput type="number" formControlName="id" [(ngModel)]="userdata.id"/>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field class="field">
         <mat-label>Name</mat-label>
-        <input matInput type="text" formControlName="name" [(ngModel)]="userdata.name"/>
+        <input matInput type="text" formControlName="name" [(ngModel)]="userdata.name" />
+        <mat-error *ngIf="
+            reactiveForm.controls['name'].invalid ||
+            reactiveForm.controls['name'].untouched
+          ">
+          Field is required
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>Age</mat-label>
         <input matInput type="number" formControlName="age" [(ngModel)]="userdata.age" />
+        <mat-error *ngIf="
+            reactiveForm.controls['age'].invalid ||
+            reactiveForm.controls['age'].untouched
+          ">
+          Field is required
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>Email</mat-label>
-        <input matInput type="text" formControlName="email" [(ngModel)]="userdata.email"/>
+        <input matInput type="text" formControlName="email" [(ngModel)]="userdata.email" />
+        <mat-error *ngIf="
+            reactiveForm.controls['email'].invalid ||
+            reactiveForm.controls['email'].untouched
+          ">
+          Field is required
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>Password</mat-label>
-        <input matInput type="text" formControlName="password"  [(ngModel)]="userdata.password"/>
+        <input matInput type="text" formControlName="password" [(ngModel)]="userdata.password" />
+        <mat-error *ngIf="reactiveForm.controls['password'].invalid">
+          Field is required
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="field">
         <mat-label>Role</mat-label>
-        <input matInput readonly  formControlName="role" />
+        <input matInput readonly formControlName="role" />
       </mat-form-field>
+
       <div class="example-button-row">
         <button mat-raised-button color="primary" type="submit">
           Register

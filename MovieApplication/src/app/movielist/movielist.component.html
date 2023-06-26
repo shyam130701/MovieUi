@@ -1,6 +1,6 @@
 
 <div>
-  <h1 style="color: red;">List Of Movies</h1>
+  <h1 style="color: blue;">List Of Movies</h1>
 </div>
 <div  class="mat-elevation-z8 demo-table">
 <table mat-table [dataSource]="dataSource"  matSort (matSortChange)="announceSortChange($event)" >
@@ -36,22 +36,34 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>TotalTickets</th>
     <td mat-cell *matCellDef="let element">{{element.totalTickets}}</td>
   </ng-container>
-<!--
-  <ng-container>
-    <th mat-header-cell >Delete</th>
-    <td mat-cell *matCellDef="let element">{{element.totalTickets}}</td>
-  </ng-container> -->
 
-  <button mat-raised-button color="primary" >
-    Login
-  </button>
+  <ng-container matColumnDef="delete"  >
+    <th mat-header-cell *matHeaderCellDef >Delete</th>
+    <td mat-cell *matCellDef="let element" (click)="deletingMovie(element.movieName,element.theaterName)">
+      <button  mat-icon-button [disabled]="roles=='USER'"><mat-icon>delete_forever</mat-icon></button>
+       </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef>Add Ticket</th>
+    <td mat-cell *matCellDef="let element" (click)="updateTicket(element.movieName,element.theaterName)">
+      <button  mat-icon-button [disabled]="roles=='USER'"><mat-icon><span class="material-icons-two-tone">
+        update
+        </span></mat-icon></button>
+       </td>
+  </ng-container>
+
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 
 
+
 </table>
+
 <mat-paginator [pageSizeOptions]="[3, 10, 20]"  [length]="200"
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">

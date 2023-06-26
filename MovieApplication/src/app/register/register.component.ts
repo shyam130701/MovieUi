@@ -1,8 +1,10 @@
 import { UserData } from './../model/user-data';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MovieserviceService } from '../movieservice.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,15 +14,15 @@ import { MovieserviceService } from '../movieservice.service';
 })
 export class RegisterComponent {
 
-  constructor(private user:MovieserviceService,private fb:FormBuilder) { }
+  constructor(private user:MovieserviceService,private fb:FormBuilder,private toast:ToastrService,private router:Router) { }
 
   reactiveForm=this.fb.group(
     {
-      id:'',
-      name:'',
-      age:'',
-      email:'',
-      password:'',
+      id:['',Validators.required],
+      name:['',Validators.required],
+      age:['',Validators.required],
+      email:['',[Validators.required,Validators.email]],
+      password:['',Validators.required],
       role:'USER'
     }
   )
@@ -32,7 +34,20 @@ export class RegisterComponent {
     this.user.register(this.userdata).subscribe(
       (data)=>{
         console.log(data);
-        location.reload();
+        this.toast.success("Registered Successfully");
+        setTimeout(()=>{
+
+
+          location.reload()
+
+      }, 2000);
+
+      this.router.navigate(['/login'])
+      },(err)=>
+      {
+        console.log(err);
+        this.toast.error("Registered Failed");
+
       }
     )
   }
